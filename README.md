@@ -4,32 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MIC CHECK! – My Speaking Identity</title>
-  <!-- Load Google Fonts for bold, child-friendly TV talent-show typography -->
+  <!-- Load Google Fonts for friendly, rounded TV talent-show typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
 
   <style>
     /* ==========================================================================
-       1. CSS VARIABLES & TV TALENT SHOW PALETTE
+       1. AESTHETIC SOFT PASTEL BLUE & BUTTER-YELLOW DESIGN TOKENS
        ========================================================================== */
     :root {
-      --studio-deep: #15092e;
-      --studio-purple: #2c1359;
-      --studio-indigo: #3e1d80;
-      --curtain-red: #b91c1c;
-      --curtain-bright: #ef4444;
-      --gold-bright: #fde047;
-      --gold-warm: #f59e0b;
-      --gold-dark: #92400e;
-      --cyan-neon: #38bdf8;
-      --cyan-dark: #0284c7;
-      --emerald-ok: #22c55e;
-      --emerald-dark: #15803d;
-      --coral-rec: #f43f5e;
-      --coral-dark: #be123c;
-      --card-cream: #fffdf7;
-      --text-ink: #1e1b4b;
+      --blue-ice: #EBF6FF;
+      --blue-sky: #BAE0FF;
+      --blue-bright: #7CC4FA;
+      --blue-deep: #2B6CB0;
+      --blue-ink: #1E3A5F;
+
+      --yellow-cream: #FFFBE6;
+      --yellow-butter: #FFF1A8;
+      --yellow-sun: #FFE066;
+      --yellow-amber: #D97706;
+      --yellow-bronze: #92400E;
+
+      --coral-rec: #F43F5E;
+      --coral-dark: #BE123C;
+      --mint-ok: #22C55E;
+      --mint-dark: #15803D;
+
+      --glass-white: rgba(255, 255, 255, 0.86);
+      --glass-border: rgba(255, 255, 255, 0.95);
+      --shadow-soft: 0 18px 45px rgba(43, 108, 176, 0.16);
     }
 
     * {
@@ -41,8 +45,8 @@
 
     body {
       font-family: 'Nunito', sans-serif;
-      background: radial-gradient(circle at top, #3b1e7a 0%, #14082b 75%, #090317 100%);
-      color: var(--text-ink);
+      background: linear-gradient(135deg, var(--blue-ice) 0%, var(--yellow-cream) 50%, var(--blue-sky) 100%);
+      color: var(--blue-ink);
       min-height: 100vh;
       display: flex;
       justify-content: center;
@@ -57,166 +61,235 @@
     }
 
     /* ==========================================================================
-       2. MAIN TV STUDIO STAGE CONTAINER & ANIMATED LIGHTING
+       2. MAIN TV STUDIO STAGE CONTAINER, CLOUDS, SPOTLIGHTS & SPARKLES
        ========================================================================== */
     #tv-stage-container {
       width: 100%;
       max-width: 980px;
-      min-height: 680px;
-      background: linear-gradient(180deg, #24104d 0%, #32186b 55%, #1d0c3d 100%);
-      border-radius: 30px;
-      border: 6px solid var(--gold-warm);
+      min-height: 690px;
+      background: linear-gradient(180deg, #D8EEFF 0%, var(--blue-ice) 45%, var(--yellow-cream) 100%);
+      border-radius: 32px;
+      border: 6px solid var(--yellow-sun);
       box-shadow:
-        0 24px 60px rgba(0, 0, 0, 0.72),
-        0 0 36px rgba(251, 191, 36, 0.35),
-        inset 0 0 0 4px #78350f;
+        0 22px 55px rgba(43, 108, 176, 0.24),
+        0 0 0 4px var(--blue-bright),
+        inset 0 0 30px rgba(255, 255, 255, 0.7);
       position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
     }
 
-    /* Sweeping Animated TV Stage Spotlights */
-    .spotlight {
+    /* Soft Pastel Studio Spotlight Beams */
+    .studio-beam {
       position: absolute;
-      top: -40px;
+      top: -30px;
       width: 340px;
       height: 540px;
-      background: linear-gradient(180deg, rgba(253, 224, 71, 0.24) 0%, rgba(253, 224, 71, 0) 90%);
+      background: linear-gradient(180deg, rgba(255, 224, 102, 0.48) 0%, rgba(255, 251, 230, 0) 90%);
       clip-path: polygon(42% 0%, 58% 0%, 100% 100%, 0% 100%);
       pointer-events: none;
       z-index: 1;
       transform-origin: top center;
     }
 
-    .spotlight.left {
+    .studio-beam.left {
       left: 6%;
-      animation: swayLeft 5.5s ease-in-out infinite;
+      animation: beamSwayLeft 6s ease-in-out infinite;
     }
 
-    .spotlight.right {
+    .studio-beam.right {
       right: 6%;
-      background: linear-gradient(180deg, rgba(56, 189, 248, 0.22) 0%, rgba(56, 189, 248, 0) 90%);
-      animation: swayRight 6s ease-in-out infinite;
+      background: linear-gradient(180deg, rgba(124, 196, 250, 0.42) 0%, rgba(235, 246, 255, 0) 90%);
+      animation: beamSwayRight 6.5s ease-in-out infinite;
     }
 
-    .spotlight.center-onair {
+    .studio-beam.center-onair {
       left: 50%;
-      width: 490px;
+      width: 500px;
       transform: translateX(-50%);
-      background: linear-gradient(180deg, rgba(253, 224, 71, 0.42) 0%, rgba(244, 63, 94, 0.08) 85%, transparent 100%);
+      background: linear-gradient(180deg, rgba(255, 224, 102, 0.72) 0%, rgba(244, 63, 94, 0.1) 85%, transparent 100%);
       opacity: 0;
       transition: opacity 0.35s ease;
     }
 
-    .spotlight.center-onair.active {
+    .studio-beam.center-onair.active {
       opacity: 1;
     }
 
-    @keyframes swayLeft {
-      0%, 100% { transform: rotate(-14deg); }
-      50% { transform: rotate(10deg); }
+    @keyframes beamSwayLeft {
+      0%, 100% { transform: rotate(-13deg); }
+      50% { transform: rotate(9deg); }
     }
 
-    @keyframes swayRight {
-      0%, 100% { transform: rotate(14deg); }
-      50% { transform: rotate(-10deg); }
+    @keyframes beamSwayRight {
+      0%, 100% { transform: rotate(13deg); }
+      50% { transform: rotate(-9deg); }
     }
 
-    /* Decorative Red Theater Curtains on Left & Right Edges */
-    .stage-curtain {
+    /* Floating Pastel Studio Clouds */
+    .pastel-cloud {
       position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 34px;
-      background: repeating-linear-gradient(
-        90deg,
-        #991b1b 0px,
-        #dc2626 10px,
-        #7f1d1d 18px
-      );
-      z-index: 15;
+      background: rgba(255, 255, 255, 0.78);
+      border-radius: 999px;
       pointer-events: none;
-      box-shadow: 0 0 18px rgba(0, 0, 0, 0.6);
+      z-index: 2;
+      box-shadow: 0 8px 20px rgba(124, 196, 250, 0.22);
     }
 
-    .stage-curtain.left { left: 0; border-right: 3px solid #fbbf24; }
-    .stage-curtain.right { right: 0; border-left: 3px solid #fbbf24; }
+    .pastel-cloud::before,
+    .pastel-cloud::after {
+      content: "";
+      position: absolute;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 50%;
+    }
+
+    .cloud-1 {
+      width: 120px;
+      height: 38px;
+      top: 68px;
+      left: 5%;
+      animation: driftCloud 14s ease-in-out infinite;
+    }
+    .cloud-1::before { width: 52px; height: 52px; top: -24px; left: 18px; }
+    .cloud-1::after { width: 40px; height: 40px; top: -16px; left: 58px; }
+
+    .cloud-2 {
+      width: 135px;
+      height: 42px;
+      top: 82px;
+      right: 6%;
+      animation: driftCloud 16s ease-in-out infinite reverse;
+    }
+    .cloud-2::before { width: 56px; height: 56px; top: -26px; left: 22px; }
+    .cloud-2::after { width: 44px; height: 44px; top: -18px; left: 66px; }
+
+    @keyframes driftCloud {
+      0%, 100% { transform: translateX(0px); }
+      50% { transform: translateX(18px); }
+    }
+
+    /* Decorative Floating Butter-Yellow Stars */
+    .sparkle-star {
+      position: absolute;
+      color: var(--yellow-amber);
+      font-size: 1.35rem;
+      pointer-events: none;
+      z-index: 3;
+      animation: twinkleStar 2.8s ease-in-out infinite;
+    }
+
+    @keyframes twinkleStar {
+      0%, 100% { transform: scale(0.9) rotate(0deg); opacity: 0.65; }
+      50% { transform: scale(1.2) rotate(12deg); opacity: 1; }
+    }
 
     /* ==========================================================================
-       3. TOP TV SHOW HUD BAR (ROUND TRACKER, STARS & SFX TOGGLE)
+       3. TOP TV SHOW HUD BAR (PROGRESS, STARS, FULL-TAB LAUNCHER & SFX)
        ========================================================================== */
     #show-hud {
       display: none;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 10px;
-      background: linear-gradient(90deg, #160933, #2e1463, #160933);
-      border-bottom: 4px solid var(--gold-warm);
-      padding: 12px 44px;
-      color: #ffffff;
-      z-index: 20;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 4px solid var(--yellow-sun);
+      padding: 10px 20px;
+      color: var(--blue-ink);
+      z-index: 25;
       position: relative;
+      box-shadow: 0 4px 16px rgba(43, 108, 176, 0.12);
+    }
+
+    .hud-group {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
     .hud-pill {
-      background: rgba(255, 255, 255, 0.12);
-      border: 2px solid rgba(253, 224, 71, 0.5);
+      background: var(--blue-ice);
+      border: 2px solid var(--blue-bright);
       border-radius: 999px;
-      padding: 6px 14px;
+      padding: 5px 14px;
       font-weight: 800;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
+      color: var(--blue-deep);
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
 
+    .hud-pill.star-pill {
+      background: var(--yellow-butter);
+      border-color: var(--yellow-sun);
+      color: var(--yellow-bronze);
+    }
+
     .round-tracker {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
     .round-badge {
-      padding: 5px 12px;
+      padding: 5px 11px;
       border-radius: 999px;
       font-family: 'Fredoka', sans-serif;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 600;
-      background: rgba(255, 255, 255, 0.14);
-      color: #cbd5e1;
-      border: 2px solid transparent;
+      background: #F1F5F9;
+      color: #64748B;
+      border: 2px solid #CBD5E1;
       transition: all 0.25s;
     }
 
     .round-badge.active {
-      background: var(--gold-bright);
-      color: #451a03;
-      border-color: #ffffff;
-      transform: scale(1.06);
-      box-shadow: 0 0 12px rgba(253, 224, 71, 0.65);
+      background: var(--yellow-sun);
+      color: var(--yellow-bronze);
+      border-color: var(--yellow-amber);
+      transform: scale(1.05);
+      box-shadow: 0 3px 10px rgba(217, 119, 6, 0.25);
     }
 
     .round-badge.done {
-      background: var(--emerald-ok);
-      color: #ffffff;
+      background: #DCFCE7;
+      color: var(--mint-dark);
+      border-color: var(--mint-ok);
     }
 
-    .sfx-toggle-btn {
-      background: #38bdf8;
-      color: #082f49;
-      border: 2px solid #ffffff;
+    .hud-mini-btn {
+      background: linear-gradient(180deg, #E0F2FE 0%, var(--blue-sky) 100%);
+      color: var(--blue-deep);
+      border: 2px solid var(--blue-bright);
       border-radius: 12px;
-      padding: 5px 12px;
+      padding: 5px 11px;
       font-family: 'Fredoka', sans-serif;
-      font-weight: 700;
-      font-size: 0.85rem;
+      font-weight: 600;
+      font-size: 0.84rem;
       cursor: pointer;
+      box-shadow: 0 2px 0 var(--blue-bright);
+      transition: transform 0.1s;
+    }
+
+    .hud-mini-btn:active {
+      transform: translateY(2px);
+      box-shadow: none;
+    }
+
+    .hud-mini-btn.yellow-btn {
+      background: linear-gradient(180deg, var(--yellow-cream) 0%, var(--yellow-sun) 100%);
+      color: var(--yellow-bronze);
+      border-color: var(--yellow-amber);
+      box-shadow: 0 2px 0 var(--yellow-amber);
     }
 
     /* ==========================================================================
-       4. SCREENS & TRANSITIONS
+       4. SCREENS & SMOOTH ENTRANCE TRANSITIONS
        ========================================================================== */
     .screen {
       display: none;
@@ -224,180 +297,184 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20px 46px 68px; /* Bottom padding leaves room for audience silhouette */
+      padding: 20px 24px 66px;
       position: relative;
       z-index: 10;
-      animation: popStageIn 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      animation: floatStageIn 0.42s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .screen.active {
       display: flex;
     }
 
-    @keyframes popStageIn {
+    @keyframes floatStageIn {
       from { opacity: 0; transform: translateY(14px) scale(0.98); }
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     /* ==========================================================================
-       5. 3D TV SHOW BUTTONS (LARGE & TOUCH-FRIENDLY)
+       5. PASTEL 3D STUDIO BUTTONS
        ========================================================================== */
-    .btn-tv {
+    .btn-studio {
       font-family: 'Fredoka', sans-serif;
-      font-size: 1.2rem;
+      font-size: 1.16rem;
       font-weight: 700;
-      color: #451a03;
-      background: linear-gradient(180deg, #fef08a 0%, #f59e0b 100%);
-      border: 4px solid #78350f;
-      border-radius: 20px;
+      color: var(--yellow-bronze);
+      background: linear-gradient(180deg, var(--yellow-butter) 0%, var(--yellow-sun) 100%);
+      border: 4px solid var(--yellow-amber);
+      border-radius: 22px;
       padding: 13px 28px;
       cursor: pointer;
-      box-shadow: 0 6px 0 #78350f, 0 12px 24px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 6px 0 var(--yellow-amber), 0 10px 22px rgba(217, 119, 6, 0.22);
       transition: transform 0.12s ease, filter 0.12s ease;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 9px;
       text-transform: uppercase;
     }
 
-    .btn-tv:hover:not(:disabled) {
+    .btn-studio:hover:not(:disabled) {
       transform: translateY(-2px);
-      filter: brightness(1.06);
+      filter: brightness(1.04);
     }
 
-    .btn-tv:active:not(:disabled) {
+    .btn-studio:active:not(:disabled) {
       transform: translateY(4px);
-      box-shadow: 0 2px 0 #78350f;
+      box-shadow: 0 2px 0 var(--yellow-amber);
     }
 
-    .btn-cyan {
-      background: linear-gradient(180deg, #7dd3fc 0%, #0284c7 100%);
-      color: #ffffff;
-      border-color: #0c4a6e;
-      box-shadow: 0 6px 0 #0c4a6e, 0 10px 20px rgba(0, 0, 0, 0.25);
+    .btn-sky {
+      background: linear-gradient(180deg, #E0F2FE 0%, var(--blue-bright) 100%);
+      color: var(--blue-ink);
+      border-color: var(--blue-deep);
+      box-shadow: 0 6px 0 var(--blue-deep), 0 10px 20px rgba(43, 108, 176, 0.2);
     }
 
-    .btn-cyan:active:not(:disabled) {
-      box-shadow: 0 2px 0 #0c4a6e;
+    .btn-sky:active:not(:disabled) {
+      box-shadow: 0 2px 0 var(--blue-deep);
     }
 
-    .btn-emerald {
-      background: linear-gradient(180deg, #4ade80 0%, #16a34a 100%);
-      color: #ffffff;
-      border-color: #14532d;
-      box-shadow: 0 6px 0 #14532d, 0 10px 20px rgba(0, 0, 0, 0.25);
+    .btn-mint {
+      background: linear-gradient(180deg, #86EFAC 0%, #22C55E 100%);
+      color: #FFFFFF;
+      border-color: var(--mint-dark);
+      box-shadow: 0 6px 0 var(--mint-dark), 0 10px 20px rgba(21, 128, 61, 0.22);
     }
 
-    .btn-emerald:active:not(:disabled) {
-      box-shadow: 0 2px 0 #14532d;
+    .btn-mint:active:not(:disabled) {
+      box-shadow: 0 2px 0 var(--mint-dark);
     }
 
-    .btn-emerald:disabled {
-      background: #94a3b8;
-      border-color: #475569;
-      box-shadow: 0 4px 0 #475569;
+    .btn-mint:disabled {
+      background: #CBD5E1;
+      border-color: #94A3B8;
+      box-shadow: 0 4px 0 #94A3B8;
+      color: #64748B;
       cursor: not-allowed;
-      opacity: 0.75;
     }
 
     .btn-coral {
-      background: linear-gradient(180deg, #fb7185 0%, #e11d48 100%);
-      color: #ffffff;
-      border-color: #881337;
-      box-shadow: 0 6px 0 #881337, 0 10px 20px rgba(225, 29, 72, 0.35);
+      background: linear-gradient(180deg, #FDA4AF 0%, var(--coral-rec) 100%);
+      color: #FFFFFF;
+      border-color: var(--coral-dark);
+      box-shadow: 0 6px 0 var(--coral-dark), 0 10px 22px rgba(244, 63, 94, 0.28);
     }
 
     .btn-coral:active:not(:disabled) {
-      box-shadow: 0 2px 0 #881337;
+      box-shadow: 0 2px 0 var(--coral-dark);
     }
 
-    .btn-slate {
-      background: linear-gradient(180deg, #e2e8f0 0%, #cbd5e1 100%);
-      color: #1e293b;
-      border-color: #475569;
-      box-shadow: 0 5px 0 #475569;
-      font-size: 0.95rem;
-      padding: 9px 16px;
+    .btn-soft-neutral {
+      background: #F8FAFC;
+      color: #475569;
+      border-color: #94A3B8;
+      box-shadow: 0 4px 0 #94A3B8;
+      font-size: 0.96rem;
+      padding: 9px 18px;
     }
 
     /* ==========================================================================
-       6. WELCOME SCREEN & MIC PERMISSION INSTRUCTIONS
+       6. WELCOME SCREEN & FULL-TAB LAUNCHER
        ========================================================================== */
-    .tv-logo-sign {
-      background: linear-gradient(180deg, #4c1d95 0%, #2e1065 100%);
-      border: 6px solid var(--gold-bright);
+    .tv-marquee-card {
+      background: linear-gradient(180deg, var(--yellow-cream) 0%, var(--yellow-butter) 100%);
+      border: 5px solid var(--yellow-sun);
       border-radius: 30px;
       padding: 16px 34px;
       text-align: center;
       box-shadow:
-        0 10px 0 #78350f,
-        0 0 30px rgba(253, 224, 71, 0.5);
+        0 10px 0 var(--yellow-amber),
+        0 16px 30px rgba(43, 108, 176, 0.18);
       margin-bottom: 16px;
-      position: relative;
     }
 
     .on-air-pill {
-      display: inline-block;
-      background: #ef4444;
-      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #FFF1F2;
+      color: var(--coral-dark);
       font-family: 'Fredoka', sans-serif;
       font-size: 0.85rem;
       font-weight: 700;
-      padding: 3px 14px;
+      padding: 4px 15px;
       border-radius: 999px;
-      border: 2px solid #ffffff;
-      letter-spacing: 1.5px;
+      border: 2px solid #FDA4AF;
+      letter-spacing: 1.2px;
       margin-bottom: 6px;
-      animation: blinkOnAir 1.4s infinite;
+      animation: softPulseOnAir 1.5s infinite;
     }
 
-    @keyframes blinkOnAir {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.55; }
+    @keyframes softPulseOnAir {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
     }
 
-    .tv-logo-sign h1 {
+    .tv-marquee-card h1 {
       font-size: clamp(1.9rem, 4.5vw, 3.1rem);
-      color: var(--gold-bright);
-      text-shadow: 3px 3px 0 #78350f, 0 0 16px rgba(253, 224, 71, 0.6);
+      color: var(--blue-deep);
+      text-shadow: 2px 2px 0 #FFFFFF;
       line-height: 1.08;
     }
 
-    .tv-logo-sub {
-      color: #bae6fd;
-      font-size: clamp(1rem, 2.2vw, 1.25rem);
+    .tv-marquee-sub {
+      color: var(--yellow-bronze);
+      font-size: clamp(1rem, 2.2vw, 1.22rem);
       font-weight: 800;
       margin-top: 4px;
     }
 
-    .welcome-card {
-      background: var(--card-cream);
-      border: 4px solid var(--gold-warm);
-      border-radius: 26px;
+    .glass-welcome-panel {
+      background: var(--glass-white);
+      backdrop-filter: blur(12px);
+      border: 4px solid var(--glass-border);
+      border-radius: 28px;
       padding: 20px 26px;
-      max-width: 740px;
+      max-width: 750px;
       width: 100%;
       text-align: center;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+      box-shadow: var(--shadow-soft);
       margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
 
-    .welcome-card p {
+    .welcome-story-text {
       font-size: 1.08rem;
       font-weight: 800;
-      color: #1e1b4b;
+      color: var(--blue-ink);
       line-height: 1.55;
-      margin-bottom: 14px;
     }
 
-    .mic-permission-box {
-      background: #eff6ff;
-      border: 3px solid #38bdf8;
-      color: #0c4a6e;
-      border-radius: 18px;
-      padding: 12px 16px;
-      font-size: 0.96rem;
+    .mic-guide-box {
+      background: var(--blue-ice);
+      border: 3px solid var(--blue-bright);
+      color: var(--blue-ink);
+      border-radius: 20px;
+      padding: 13px 16px;
+      font-size: 0.95rem;
       font-weight: 800;
       line-height: 1.45;
       text-align: left;
@@ -406,34 +483,15 @@
       gap: 12px;
     }
 
-    .mic-permission-icon {
-      font-size: 1.8rem;
-      line-height: 1;
-      flex-shrink: 0;
-    }
-
-    .tv-text-input {
-      width: 100%;
-      max-width: 380px;
-      padding: 12px 18px;
-      font-family: 'Fredoka', sans-serif;
-      font-size: 1.2rem;
-      color: #1e1b4b;
-      background: #fefce8;
-      border: 3px solid #f59e0b;
-      border-radius: 16px;
-      text-align: center;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .tv-text-input:focus {
-      border-color: #0284c7;
-      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.3);
+    .welcome-actions-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
     }
 
     /* ==========================================================================
-       7. STAGE CHALLENGE SCREEN (4 SPEAKING ROUNDS)
+       7. STAGE SPEAKING ROUND SCREEN (FROSTED GLASS CARDS)
        ========================================================================== */
     #stage-screen {
       justify-content: flex-start;
@@ -441,9 +499,9 @@
       gap: 12px;
     }
 
-    .round-header-bar {
+    .stage-topbar {
       width: 100%;
-      max-width: 820px;
+      max-width: 830px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -451,37 +509,37 @@
       gap: 8px;
     }
 
-    .round-title-tag {
-      background: linear-gradient(90deg, #f59e0b, #fbbf24);
-      color: #451a03;
-      border: 3px solid #ffffff;
+    .round-title-pill {
+      background: linear-gradient(90deg, var(--yellow-butter), var(--yellow-sun));
+      color: var(--yellow-bronze);
+      border: 3px solid #FFFFFF;
       border-radius: 999px;
       padding: 6px 20px;
       font-family: 'Fredoka', sans-serif;
       font-size: 1.15rem;
       font-weight: 700;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 14px rgba(43, 108, 176, 0.15);
     }
 
-    .prompt-counter-tag {
-      background: rgba(255, 255, 255, 0.16);
-      color: #fde047;
-      border: 2px solid #fde047;
+    .challenge-count-pill {
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--blue-deep);
+      border: 2px solid var(--blue-bright);
       border-radius: 999px;
       padding: 5px 16px;
       font-weight: 800;
       font-size: 0.95rem;
     }
 
-    /* Main Teleprompter & Interaction Card */
-    .teleprompter-card {
+    .glass-stage-card {
       width: 100%;
-      max-width: 820px;
-      background: var(--card-cream);
-      border: 5px solid var(--gold-warm);
-      border-radius: 26px;
+      max-width: 830px;
+      background: var(--glass-white);
+      backdrop-filter: blur(12px);
+      border: 4px solid #FFFFFF;
+      border-radius: 28px;
       padding: 18px 24px;
-      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
+      box-shadow: var(--shadow-soft);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -489,39 +547,40 @@
       gap: 12px;
     }
 
-    .prompt-instruction {
-      background: #e0f2fe;
-      color: #0369a1;
-      border: 2px solid #38bdf8;
+    .prompt-hint-badge {
+      background: var(--blue-ice);
+      color: var(--blue-deep);
+      border: 2px solid var(--blue-bright);
       border-radius: 999px;
       padding: 4px 16px;
       font-size: 0.92rem;
       font-weight: 800;
     }
 
-    /* Live Sentence Teleprompter Display */
-    .sentence-teleprompter {
+    /* Pastel Sky-Blue & Butter-Yellow Teleprompter Display */
+    .teleprompter-box {
       width: 100%;
-      background: #1e1b4b;
-      color: #ffffff;
-      border: 4px solid #38bdf8;
-      border-radius: 20px;
+      background: linear-gradient(135deg, #F0F8FF 0%, var(--yellow-cream) 100%);
+      color: var(--blue-ink);
+      border: 4px solid var(--blue-bright);
+      border-radius: 22px;
       padding: 14px 20px;
       font-family: 'Fredoka', sans-serif;
       font-size: clamp(1.3rem, 3vw, 1.85rem);
       line-height: 1.4;
-      box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.5);
+      box-shadow: inset 0 2px 8px rgba(124, 196, 250, 0.25);
     }
 
-    .sentence-fill-word {
-      color: #fde047;
-      text-decoration: underline;
-      text-decoration-style: wavy;
-      text-underline-offset: 5px;
+    .blank-word-highlight {
+      color: var(--blue-deep);
+      background: var(--yellow-butter);
+      padding: 1px 12px;
+      border-radius: 12px;
+      border-bottom: 3px solid var(--yellow-amber);
     }
 
-    /* Interactive Answer Helper Controls */
-    .interactive-answer-area {
+    /* Interactive Answer Controls */
+    .answer-builder-area {
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -529,17 +588,37 @@
       gap: 10px;
     }
 
-    .idea-chips-row {
+    .pastel-text-input {
+      width: 100%;
+      max-width: 400px;
+      padding: 11px 18px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.18rem;
+      color: var(--blue-ink);
+      background: #FFFFFF;
+      border: 3px solid var(--blue-bright);
+      border-radius: 18px;
+      text-align: center;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .pastel-text-input:focus {
+      border-color: var(--yellow-amber);
+      box-shadow: 0 0 0 4px rgba(255, 224, 102, 0.45);
+    }
+
+    .chips-row {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 8px;
     }
 
-    .idea-chip {
-      background: #fef3c7;
-      color: #78350f;
-      border: 2px solid #f59e0b;
+    .pastel-chip {
+      background: var(--yellow-cream);
+      color: var(--yellow-bronze);
+      border: 2px solid var(--yellow-sun);
       border-radius: 999px;
       padding: 7px 15px;
       font-family: 'Nunito', sans-serif;
@@ -549,13 +628,12 @@
       transition: all 0.15s;
     }
 
-    .idea-chip:hover, .idea-chip.selected {
-      background: #f59e0b;
-      color: #ffffff;
+    .pastel-chip:hover {
+      background: var(--yellow-sun);
       transform: translateY(-1px);
     }
 
-    /* Round 3 Hobby Cards Grid */
+    /* Round 3 Hobby Cards */
     .hobbies-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
@@ -564,9 +642,9 @@
     }
 
     .hobby-card {
-      background: #f8fafc;
-      border: 3px solid #cbd5e1;
-      border-radius: 18px;
+      background: var(--blue-ice);
+      border: 3px solid var(--blue-sky);
+      border-radius: 20px;
       padding: 10px 8px;
       cursor: pointer;
       display: flex;
@@ -577,14 +655,14 @@
     }
 
     .hobby-card:hover {
-      border-color: #38bdf8;
+      border-color: var(--blue-bright);
       transform: translateY(-2px);
     }
 
     .hobby-card.selected {
-      background: #fef9c3;
-      border-color: #f59e0b;
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
+      background: var(--yellow-butter);
+      border-color: var(--yellow-amber);
+      box-shadow: 0 6px 14px rgba(217, 119, 6, 0.2);
       transform: scale(1.03);
     }
 
@@ -595,49 +673,49 @@
     .hobby-label {
       font-family: 'Fredoka', sans-serif;
       font-size: 0.98rem;
-      color: #1e1b4b;
+      color: var(--blue-ink);
     }
 
     /* Round 4 Editable Big Speech Box */
-    .speech-textarea {
+    .speech-editor-box {
       width: 100%;
       min-height: 112px;
       padding: 12px 16px;
       font-family: 'Nunito', sans-serif;
-      font-size: 1.06rem;
+      font-size: 1.05rem;
       font-weight: 800;
-      color: #1e1b4b;
-      background: #fefce8;
-      border: 3px solid #f59e0b;
-      border-radius: 16px;
+      color: var(--blue-ink);
+      background: #FFFFFF;
+      border: 3px solid var(--blue-bright);
+      border-radius: 18px;
       resize: vertical;
       line-height: 1.5;
     }
 
-    .sentence-count-badge {
+    .sentence-counter-pill {
       font-size: 0.88rem;
       font-weight: 800;
       padding: 4px 14px;
       border-radius: 999px;
-      background: #dcfce7;
-      color: #15803d;
-      border: 2px solid #22c55e;
+      background: #DCFCE7;
+      color: var(--mint-dark);
+      border: 2px solid var(--mint-ok);
     }
 
-    .sentence-count-badge.warning {
-      background: #fef3c7;
-      color: #b45309;
-      border-color: #f59e0b;
+    .sentence-counter-pill.needs-more {
+      background: var(--yellow-butter);
+      color: var(--yellow-bronze);
+      border-color: var(--yellow-amber);
     }
 
     /* ==========================================================================
-       8. STUDIO MICROPHONE, REAL-TIME EQUALIZER & AUDIO PLAYBACK STATION
+       8. STUDIO MICROPHONE, LIVE EQUALIZER & AUDIO PLAYBACK STATION
        ========================================================================== */
-    .studio-mic-station {
+    .mic-studio-station {
       width: 100%;
-      background: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 100%);
-      border: 3px solid #cbd5e1;
-      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(235, 246, 255, 0.9) 0%, rgba(255, 251, 230, 0.9) 100%);
+      border: 3px solid var(--blue-sky);
+      border-radius: 24px;
       padding: 14px 18px;
       display: flex;
       flex-direction: column;
@@ -646,10 +724,10 @@
       transition: all 0.3s;
     }
 
-    .studio-mic-station.on-air {
-      background: linear-gradient(180deg, #fff1f2 0%, #ffe4e6 100%);
-      border-color: #f43f5e;
-      box-shadow: 0 0 22px rgba(244, 63, 94, 0.35);
+    .mic-studio-station.recording {
+      background: linear-gradient(180deg, #FFF1F2 0%, var(--yellow-cream) 100%);
+      border-color: var(--coral-rec);
+      box-shadow: 0 0 22px rgba(244, 63, 94, 0.22);
     }
 
     .mic-visual-row {
@@ -659,8 +737,8 @@
       gap: 18px;
     }
 
-    /* Real Audio-Reactive Equalizer Wave Bars */
-    .eq-bars {
+    /* Real-Time Volume Equalizer Wave Bars */
+    .eq-wave-group {
       display: flex;
       align-items: center;
       gap: 6px;
@@ -670,76 +748,79 @@
     .eq-bar {
       width: 8px;
       height: 12px;
-      background: #94a3b8;
+      background: var(--blue-bright);
       border-radius: 999px;
       transition: height 0.08s ease-out, background 0.2s;
     }
 
-    .studio-mic-station.on-air .eq-bar {
-      background: #f43f5e;
+    .eq-bar:nth-child(even) {
+      background: var(--yellow-sun);
     }
 
-    .studio-mic-station.on-air .eq-bar:nth-child(2) { background: #f59e0b; }
-    .studio-mic-station.on-air .eq-bar:nth-child(3) { background: #10b981; }
-    .studio-mic-station.on-air .eq-bar:nth-child(4) { background: #0284c7; }
-    .studio-mic-station.on-air .eq-bar:nth-child(5) { background: #8b5cf6; }
+    .mic-studio-station.recording .eq-bar {
+      background: var(--coral-rec);
+    }
+
+    .mic-studio-station.recording .eq-bar:nth-child(2) { background: var(--yellow-amber); }
+    .mic-studio-station.recording .eq-bar:nth-child(3) { background: var(--mint-ok); }
+    .mic-studio-station.recording .eq-bar:nth-child(4) { background: var(--blue-deep); }
 
     /* Cartoon Studio Microphone SVG */
-    .cartoon-mic-icon {
+    .cartoon-mic-svg {
       width: 64px;
       height: 76px;
-      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.25));
-      transition: transform 0.25s;
+      filter: drop-shadow(0 4px 8px rgba(43, 108, 176, 0.22));
     }
 
-    .studio-mic-station.on-air .cartoon-mic-icon {
-      animation: micRock 0.65s ease-in-out infinite alternate;
+    .mic-studio-station.recording .cartoon-mic-svg {
+      animation: micBounce 0.6s ease-in-out infinite alternate;
     }
 
-    @keyframes micRock {
+    @keyframes micBounce {
       0% { transform: rotate(-6deg) scale(1.06); }
       100% { transform: rotate(6deg) scale(1.06); }
     }
 
-    .stage-buttons-row {
+    .studio-status-msg {
+      font-weight: 800;
+      font-size: 0.98rem;
+      color: var(--blue-ink);
+      max-width: 680px;
+      line-height: 1.45;
+    }
+
+    .mic-studio-station.recording .studio-status-msg {
+      color: var(--coral-dark);
+    }
+
+    .mic-controls-row {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
-    .on-air-status-text {
-      font-weight: 800;
-      font-size: 1rem;
-      color: #334155;
-      max-width: 650px;
-    }
-
-    .studio-mic-station.on-air .on-air-status-text {
-      color: #be123c;
-    }
-
-    /* Playback Review Box (Appears after recording stops) */
-    .playback-box {
+    /* Playback Review Box */
+    .playback-review-box {
       display: none;
       width: 100%;
-      max-width: 640px;
-      background: #ffffff;
-      border: 3px solid #38bdf8;
-      border-radius: 18px;
+      max-width: 660px;
+      background: #FFFFFF;
+      border: 3px solid var(--blue-bright);
+      border-radius: 20px;
       padding: 12px 16px;
       flex-direction: column;
       align-items: center;
       gap: 10px;
-      animation: popStageIn 0.3s ease;
+      animation: floatStageIn 0.3s ease;
     }
 
-    .playback-box.visible {
+    .playback-review-box.visible {
       display: flex;
     }
 
-    .playback-controls-row {
+    .playback-row {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -750,37 +831,37 @@
 
     #pupil-audio-player {
       height: 40px;
-      max-width: 280px;
+      max-width: 270px;
       border-radius: 999px;
     }
 
     /* ==========================================================================
        9. SELF-ASSESSMENT SPEAKING CHECKLIST
        ========================================================================== */
-    .checklist-panel {
+    .checklist-card {
       display: none;
       width: 100%;
-      background: #fefce8;
-      border: 3px solid #eab308;
-      border-radius: 20px;
+      background: var(--yellow-cream);
+      border: 3px solid var(--yellow-sun);
+      border-radius: 22px;
       padding: 14px 18px;
       flex-direction: column;
       align-items: center;
       gap: 10px;
-      animation: popStageIn 0.35s ease;
+      animation: floatStageIn 0.35s ease;
     }
 
-    .checklist-panel.visible {
+    .checklist-card.visible {
       display: flex;
     }
 
-    .checklist-title {
+    .checklist-heading {
       font-family: 'Fredoka', sans-serif;
-      font-size: 1.15rem;
-      color: #854d0e;
+      font-size: 1.12rem;
+      color: var(--yellow-bronze);
     }
 
-    .checklist-items {
+    .checklist-grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -788,41 +869,41 @@
       width: 100%;
     }
 
-    .check-item-label {
-      background: #ffffff;
-      border: 3px solid #cbd5e1;
-      border-radius: 14px;
-      padding: 10px 14px;
+    .chk-pill-label {
+      background: #FFFFFF;
+      border: 3px solid var(--blue-sky);
+      border-radius: 16px;
+      padding: 9px 14px;
       display: flex;
       align-items: center;
       gap: 8px;
       font-weight: 800;
-      font-size: 0.98rem;
-      color: #1e293b;
+      font-size: 0.96rem;
+      color: var(--blue-ink);
       cursor: pointer;
       transition: all 0.15s;
       user-select: none;
     }
 
-    .check-item-label:hover {
-      border-color: #38bdf8;
+    .chk-pill-label:hover {
+      border-color: var(--blue-bright);
     }
 
-    .check-item-label.checked {
-      background: #dcfce7;
-      border-color: #16a34a;
-      color: #14532d;
+    .chk-pill-label.checked {
+      background: #DCFCE7;
+      border-color: var(--mint-ok);
+      color: var(--mint-dark);
     }
 
-    .check-item-label input[type="checkbox"] {
+    .chk-pill-label input[type="checkbox"] {
       width: 20px;
       height: 20px;
-      accent-color: #16a34a;
+      accent-color: var(--mint-ok);
       cursor: pointer;
     }
 
     /* ==========================================================================
-       10. STAR SPEAKER CERTIFICATE (GRAND FINALE SCREEN)
+       10. STAR SPEAKER CERTIFICATE SCREEN
        ========================================================================== */
     #confetti-canvas {
       position: absolute;
@@ -833,34 +914,34 @@
       z-index: 30;
     }
 
-    .certificate-frame {
+    .certificate-card {
       width: 100%;
       max-width: 780px;
-      background: linear-gradient(180deg, #fffbeb 0%, #fef3c7 100%);
-      border: 8px double #b45309;
-      border-radius: 26px;
-      padding: 22px 28px;
+      background: linear-gradient(180deg, #FFFFFF 0%, var(--yellow-cream) 60%, var(--blue-ice) 100%);
+      border: 8px double var(--yellow-amber);
+      border-radius: 28px;
+      padding: 24px 28px;
       text-align: center;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+      box-shadow: var(--shadow-soft);
       position: relative;
       margin-bottom: 16px;
     }
 
-    .cert-badge {
-      font-size: 2.6rem;
+    .cert-top-icons {
+      font-size: 2.5rem;
       margin-bottom: 4px;
     }
 
-    .cert-heading {
+    .cert-title {
       font-size: clamp(1.5rem, 3.8vw, 2.4rem);
-      color: #78350f;
+      color: var(--blue-deep);
       text-transform: uppercase;
       letter-spacing: 1px;
     }
 
-    .cert-sub {
+    .cert-subtitle {
       font-weight: 800;
-      color: #92400e;
+      color: var(--yellow-bronze);
       font-size: 1rem;
       margin: 4px 0 10px;
     }
@@ -868,38 +949,38 @@
     .cert-pupil-name {
       font-family: 'Fredoka', sans-serif;
       font-size: clamp(1.7rem, 4vw, 2.5rem);
-      color: #1e1b4b;
-      border-bottom: 4px solid #f59e0b;
+      color: var(--blue-ink);
+      border-bottom: 4px solid var(--yellow-sun);
       display: inline-block;
       padding: 2px 28px;
       margin-bottom: 10px;
     }
 
-    .cert-stars-row {
+    .cert-stars-badge {
       font-family: 'Fredoka', sans-serif;
-      font-size: 1.3rem;
-      color: #15803d;
-      background: #dcfce7;
-      border: 2px solid #22c55e;
+      font-size: 1.25rem;
+      color: var(--mint-dark);
+      background: #DCFCE7;
+      border: 2px solid var(--mint-ok);
       border-radius: 999px;
       padding: 5px 20px;
       display: inline-block;
       margin-bottom: 12px;
     }
 
-    .cert-speech-summary {
-      background: #ffffff;
-      border: 2px dashed #d97706;
-      border-radius: 16px;
+    .cert-speech-box {
+      background: rgba(255, 255, 255, 0.92);
+      border: 2px dashed var(--blue-bright);
+      border-radius: 18px;
       padding: 12px 16px;
       font-size: 0.98rem;
       font-weight: 700;
-      color: #334155;
+      color: var(--blue-ink);
       line-height: 1.5;
       text-align: left;
     }
 
-    .cert-actions-row {
+    .cert-buttons-row {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -907,23 +988,23 @@
     }
 
     /* ==========================================================================
-       11. CHEERING TV AUDIENCE SILHOUETTE FOOTER
+       11. SOFT PASTEL AUDIENCE SILHOUETTE FOOTER
        ========================================================================== */
-    .audience-footer {
+    .audience-wave-footer {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 54px;
+      height: 52px;
       pointer-events: none;
       z-index: 12;
     }
 
-    .audience-footer.cheering {
-      animation: audienceCheer 0.45s ease-in-out 4;
+    .audience-wave-footer.cheering {
+      animation: audienceJump 0.45s ease-in-out 4;
     }
 
-    @keyframes audienceCheer {
+    @keyframes audienceJump {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-9px); }
     }
@@ -933,41 +1014,35 @@
        ========================================================================== */
     @media (max-width: 680px) {
       #tv-stage-container {
-        border-radius: 20px;
+        border-radius: 22px;
         border-width: 4px;
       }
-      .stage-curtain {
-        width: 16px;
-      }
-      #show-hud {
-        padding: 10px 22px;
-      }
       .screen {
-        padding: 14px 22px 62px;
+        padding: 14px 14px 60px;
       }
       .round-tracker {
         display: none;
       }
-      .btn-tv {
-        font-size: 1.05rem;
+      .btn-studio {
+        font-size: 1.04rem;
         padding: 11px 20px;
       }
     }
 
     @media print {
       body {
-        background: #ffffff;
+        background: #FFFFFF;
         padding: 0;
       }
       #tv-stage-container {
         border: none;
         box-shadow: none;
-        background: #ffffff;
+        background: #FFFFFF;
       }
-      .spotlight, .stage-curtain, .audience-footer, .cert-actions-row, #confetti-canvas {
+      .studio-beam, .pastel-cloud, .sparkle-star, .audience-wave-footer, .cert-buttons-row, #confetti-canvas {
         display: none !important;
       }
-      .certificate-frame {
+      .certificate-card {
         box-shadow: none;
         margin: 0 auto;
       }
@@ -977,22 +1052,32 @@
 <body>
 
   <div id="tv-stage-container">
-    <!-- Animated TV Spotlights -->
-    <div class="spotlight left"></div>
-    <div class="spotlight right"></div>
-    <div class="spotlight center-onair" id="center-spotlight"></div>
+    <!-- Soft Pastel Studio Spotlights -->
+    <div class="studio-beam left"></div>
+    <div class="studio-beam right"></div>
+    <div class="studio-beam center-onair" id="center-spotlight"></div>
 
-    <!-- Stage Curtains -->
-    <div class="stage-curtain left"></div>
-    <div class="stage-curtain right"></div>
+    <!-- Floating Pastel Clouds & Stars -->
+    <div class="pastel-cloud cloud-1"></div>
+    <div class="pastel-cloud cloud-2"></div>
+    <div class="sparkle-star" style="top: 56px; left: 22%;">✦</div>
+    <div class="sparkle-star" style="top: 96px; right: 24%; animation-delay: 0.9s;">★</div>
+    <div class="sparkle-star" style="bottom: 84px; left: 8%; animation-delay: 1.5s;">✦</div>
+    <div class="sparkle-star" style="bottom: 92px; right: 9%; animation-delay: 0.4s;">★</div>
 
     <!-- ======================================================================
          TOP TV SHOW HUD BAR
          ====================================================================== -->
     <header id="show-hud">
-      <div class="hud-pill">
-        <span>🎤</span>
-        <span id="hud-contestant-name">Star Contestant</span>
+      <div class="hud-group">
+        <div class="hud-pill">
+          <span>🎤</span>
+          <span id="hud-contestant-name">Star Contestant</span>
+        </div>
+        <div class="hud-pill star-pill">
+          <span>⭐</span>
+          <span id="hud-stars">0</span> / <span id="hud-total-stars">10</span>
+        </div>
       </div>
 
       <div class="round-tracker" id="hud-round-badges">
@@ -1002,70 +1087,74 @@
         <span class="round-badge" data-round="3">R4: Big Speech</span>
       </div>
 
-      <div style="display: flex; align-items: center; gap: 8px;">
-        <div class="hud-pill" style="background: rgba(253, 224, 71, 0.2);">
-          <span>⭐</span>
-          <span id="hud-stars">0</span> / <span id="hud-total-stars">10</span>
-        </div>
-        <button type="button" class="sfx-toggle-btn" id="btn-sfx">🔊 SFX</button>
+      <div class="hud-group">
+        <button type="button" class="hud-mini-btn yellow-btn" id="btn-hud-full-tab" title="Open in a full browser tab for microphone access">
+          🚀 Full Tab (Mic)
+        </button>
+        <button type="button" class="hud-mini-btn" id="btn-sfx">🔊 SFX</button>
       </div>
     </header>
 
     <!-- ======================================================================
-         SCREEN 1: WELCOME SCREEN & MICROPHONE PERMISSION GUIDE
+         SCREEN 1: WELCOME SCREEN & DIRECT FULL-TAB MIC LAUNCHER
          ====================================================================== -->
     <section id="welcome-screen" class="screen active">
-      <div class="tv-logo-sign">
-        <div class="on-air-pill">● LIVE TV TALENT SHOW</div>
+      <div class="tv-marquee-card">
+        <div class="on-air-pill">● LIVE CHILDREN'S TV SHOW</div>
         <h1>🎤 MIC CHECK! 🎤</h1>
-        <div class="tv-logo-sub">My Speaking Identity – Year 4 Star Speaker Challenge</div>
+        <div class="tv-marquee-sub">My Speaking Identity – Year 4 Star Speaker Show</div>
       </div>
 
-      <div class="welcome-card">
-        <p>
-          Welcome to <strong>“MIC CHECK!”</strong> — the exciting children’s television show where YOU are the newest contestant! Complete <strong>4 Speaking Rounds</strong> on stage, record and listen to your own voice, and earn stars to become our next <strong>STAR SPEAKER</strong>!
+      <div class="glass-welcome-panel">
+        <p class="welcome-story-text">
+          Welcome to <strong>“MIC CHECK!”</strong> — the fun television show where YOU are the newest contestant! Complete <strong>4 Speaking Rounds</strong> on stage, record and listen to your own voice, and earn stars to win your official <strong>Star Speaker Certificate</strong>!
         </p>
 
-        <div class="mic-permission-box">
-          <div class="mic-permission-icon">🎙️</div>
+        <div class="mic-guide-box">
+          <div style="font-size: 1.85rem; line-height: 1;">🎙️</div>
           <div>
-            <strong>How Your Microphone Works:</strong><br />
-            When your browser asks to use your microphone, click <strong>Allow</strong> so you can record and hear your own voice! All recordings stay safely on your device and are never uploaded anywhere.
+            <strong>Microphone &amp; Full-Tab Tip:</strong><br />
+            If you are viewing this inside a small preview box, tap <strong>🚀 OPEN IN FULL TAB (ENABLE MIC)</strong> first so your browser can ask for microphone permission. When prompted, click <strong>Allow</strong>!
           </div>
         </div>
       </div>
 
-      <button type="button" class="btn-tv" id="btn-start-show">
-        🎬 STEP ONTO THE STAGE!
-      </button>
+      <div class="welcome-actions-row">
+        <button type="button" class="btn-studio btn-sky" id="btn-welcome-full-tab">
+          🚀 OPEN IN FULL TAB (ENABLE MIC)
+        </button>
+        <button type="button" class="btn-studio" id="btn-start-show">
+          🎬 STEP ONTO THE STAGE!
+        </button>
+      </div>
     </section>
 
     <!-- ======================================================================
          SCREEN 2: STAGE SPEAKING ROUND SCREEN
          ====================================================================== -->
     <section id="stage-screen" class="screen">
-      <div class="round-header-bar">
-        <div class="round-title-tag" id="round-title-display">Round 1: Introduce Yourself</div>
-        <div class="prompt-counter-tag" id="prompt-counter-display">Challenge 1 of 4</div>
+      <div class="stage-topbar">
+        <div class="round-title-pill" id="round-title-display">Round 1: Introduce Yourself</div>
+        <div class="challenge-count-pill" id="prompt-counter-display">Challenge 1 of 4</div>
       </div>
 
-      <div class="teleprompter-card">
-        <div class="prompt-instruction" id="prompt-instruction-display">
-          Complete the sentence below, then record yourself speaking it aloud!
+      <div class="glass-stage-card">
+        <div class="prompt-hint-badge" id="prompt-instruction-display">
+          Complete the sentence below, then record yourself speaking aloud!
         </div>
 
         <!-- Live Teleprompter Sentence -->
-        <div class="sentence-teleprompter" id="teleprompter-display">
-          “My name is <span class="sentence-fill-word">______</span>.”
+        <div class="teleprompter-box" id="teleprompter-display">
+          “My name is <span class="blank-word-highlight">______</span>.”
         </div>
 
-        <!-- Dynamic Answer Controls (Input / Chips / Hobby Cards / Round 4 Speech Editor) -->
-        <div class="interactive-answer-area" id="answer-controls-container"></div>
+        <!-- Dynamic Answer Controls -->
+        <div class="answer-builder-area" id="answer-controls-container"></div>
 
-        <!-- Cartoon Studio Microphone, Real Voice Recorder & Playback Station -->
-        <div class="studio-mic-station" id="mic-station">
+        <!-- Studio Microphone, Live Equalizer & Playback Station -->
+        <div class="mic-studio-station" id="mic-station">
           <div class="mic-visual-row">
-            <div class="eq-bars" id="eq-left">
+            <div class="eq-wave-group">
               <div class="eq-bar"></div>
               <div class="eq-bar"></div>
               <div class="eq-bar"></div>
@@ -1073,19 +1162,19 @@
               <div class="eq-bar"></div>
             </div>
 
-            <!-- Cartoon Retro TV Studio Microphone SVG -->
-            <svg class="cartoon-mic-icon" viewBox="0 0 80 96" xmlns="http://www.w3.org/2000/svg">
-              <rect x="22" y="6" width="36" height="48" rx="18" fill="#cbd5e1" stroke="#1e293b" stroke-width="3.5"/>
-              <line x1="22" y1="22" x2="58" y2="22" stroke="#475569" stroke-width="2.5"/>
-              <line x1="22" y1="30" x2="58" y2="30" stroke="#475569" stroke-width="2.5"/>
-              <line x1="22" y1="38" x2="58" y2="38" stroke="#475569" stroke-width="2.5"/>
-              <rect x="20" y="27" width="40" height="7" rx="3" fill="#f59e0b" stroke="#78350f" stroke-width="2"/>
-              <path d="M14,34 Q14,64 40,64 Q66,64 66,34" fill="none" stroke="#f59e0b" stroke-width="5" stroke-linecap="round"/>
-              <rect x="36" y="64" width="8" height="20" fill="#475569" stroke="#1e293b" stroke-width="2.5"/>
-              <ellipse cx="40" cy="86" rx="22" ry="6" fill="#1e293b"/>
+            <!-- Cute Pastel Studio Microphone SVG -->
+            <svg class="cartoon-mic-svg" viewBox="0 0 80 96" xmlns="http://www.w3.org/2000/svg">
+              <rect x="22" y="6" width="36" height="48" rx="18" fill="#E0F2FE" stroke="#2B6CB0" stroke-width="3.5"/>
+              <line x1="22" y1="22" x2="58" y2="22" stroke="#7CC4FA" stroke-width="2.5"/>
+              <line x1="22" y1="30" x2="58" y2="30" stroke="#7CC4FA" stroke-width="2.5"/>
+              <line x1="22" y1="38" x2="58" y2="38" stroke="#7CC4FA" stroke-width="2.5"/>
+              <rect x="20" y="27" width="40" height="7" rx="3.5" fill="#FFE066" stroke="#D97706" stroke-width="2"/>
+              <path d="M14,34 Q14,64 40,64 Q66,64 66,34" fill="none" stroke="#FFE066" stroke-width="5" stroke-linecap="round"/>
+              <rect x="36" y="64" width="8" height="20" fill="#7CC4FA" stroke="#2B6CB0" stroke-width="2.5"/>
+              <ellipse cx="40" cy="86" rx="22" ry="6" fill="#2B6CB0"/>
             </svg>
 
-            <div class="eq-bars" id="eq-right">
+            <div class="eq-wave-group">
               <div class="eq-bar"></div>
               <div class="eq-bar"></div>
               <div class="eq-bar"></div>
@@ -1094,31 +1183,35 @@
             </div>
           </div>
 
-          <div class="on-air-status-text" id="stage-status-text">
+          <div class="studio-status-msg" id="stage-status-text">
             Tap <strong>🔴 RECORD MY VOICE</strong> and speak your sentence clearly!
           </div>
 
-          <div class="stage-buttons-row">
-            <button type="button" class="btn-tv btn-coral" id="btn-record-voice">
+          <div class="mic-controls-row">
+            <button type="button" class="btn-studio btn-coral" id="btn-record-voice">
               🔴 RECORD MY VOICE
             </button>
 
-            <button type="button" class="btn-tv btn-slate" id="btn-practice-no-mic" style="display: none;">
+            <button type="button" class="btn-studio btn-sky" id="btn-stage-full-tab" style="display: none; font-size: 0.96rem; padding: 9px 18px;">
+              🚀 Open in Full Tab (Enable Mic)
+            </button>
+
+            <button type="button" class="btn-studio btn-soft-neutral" id="btn-practice-no-mic" style="display: none;">
               🗣️ Practice Without Mic
             </button>
           </div>
 
           <!-- Voice Playback & Re-Record Panel -->
-          <div class="playback-box" id="playback-box">
-            <div style="font-weight: 800; color: #0369a1; font-size: 0.95rem;">
+          <div class="playback-review-box" id="playback-box">
+            <div style="font-weight: 800; color: var(--blue-deep); font-size: 0.95rem;">
               🎧 Listen back to check your speaking!
             </div>
-            <div class="playback-controls-row">
-              <button type="button" class="btn-tv btn-cyan" id="btn-play-recording" style="font-size: 1rem; padding: 10px 18px;">
+            <div class="playback-row">
+              <button type="button" class="btn-studio btn-sky" id="btn-play-recording" style="font-size: 1rem; padding: 10px 18px;">
                 ▶️ PLAY MY RECORDING
               </button>
               <audio id="pupil-audio-player" controls></audio>
-              <button type="button" class="btn-tv" id="btn-record-again" style="font-size: 1rem; padding: 10px 18px;">
+              <button type="button" class="btn-studio" id="btn-record-again" style="font-size: 1rem; padding: 10px 18px;">
                 🔄 Record Again
               </button>
             </div>
@@ -1126,27 +1219,27 @@
         </div>
 
         <!-- 3-Point Speaking Self-Assessment Checklist -->
-        <div class="checklist-panel" id="speaking-checklist">
-          <div class="checklist-title">📋 Star Speaker Self-Check — Tick all 3 to earn your Star!</div>
-          <div class="checklist-items">
-            <label class="check-item-label">
+        <div class="checklist-card" id="speaking-checklist">
+          <div class="checklist-heading">📋 Star Speaker Self-Check — Tick all 3 to collect your Star!</div>
+          <div class="checklist-grid">
+            <label class="chk-pill-label">
               <input type="checkbox" class="speaker-chk" id="chk-1" />
               <span>1. Did I speak clearly?</span>
             </label>
-            <label class="check-item-label">
+            <label class="chk-pill-label">
               <input type="checkbox" class="speaker-chk" id="chk-2" />
               <span>2. Did I use complete sentences?</span>
             </label>
-            <label class="check-item-label">
+            <label class="chk-pill-label">
               <input type="checkbox" class="speaker-chk" id="chk-3" />
               <span>3. Did I speak confidently?</span>
             </label>
           </div>
         </div>
 
-        <!-- Next Challenge / Finish Round Button -->
-        <button type="button" class="btn-tv btn-emerald" id="btn-next-challenge" disabled style="display: none;">
-          ⭐ COLLECT STAR & CONTINUE ➡️
+        <!-- Claim Star & Continue Button -->
+        <button type="button" class="btn-studio btn-mint" id="btn-next-challenge" disabled style="display: none;">
+          ⭐ CLAIM STAR &amp; NEXT ➡️
         </button>
       </div>
     </section>
@@ -1157,56 +1250,84 @@
     <section id="certificate-screen" class="screen">
       <canvas id="confetti-canvas"></canvas>
 
-      <div class="certificate-frame">
-        <div class="cert-badge">🏆🌟🎤🌟🏆</div>
-        <h1 class="cert-heading">Star Speaker Certificate</h1>
-        <div class="cert-sub">Presented by the “MIC CHECK!” Television Talent Show to</div>
+      <div class="certificate-card">
+        <div class="cert-top-icons">🏆🌟🎤🌟🏆</div>
+        <h1 class="cert-title">Star Speaker Certificate</h1>
+        <div class="cert-subtitle">Presented by the “MIC CHECK!” Television Talent Show to</div>
 
         <div class="cert-pupil-name" id="cert-name-display">Star Speaker</div>
         <br />
-        <div class="cert-stars-row" id="cert-stars-display">
+        <div class="cert-stars-badge" id="cert-stars-display">
           ⭐ 10 / 10 Stars Earned – Official Star Speaker!
         </div>
 
-        <div class="cert-speech-summary" id="cert-speech-display">
-          <!-- Populated with the pupil's complete Big Introduction -->
+        <div class="cert-speech-box" id="cert-speech-display">
+          <!-- Populated with pupil's Big Introduction -->
         </div>
       </div>
 
-      <div class="cert-actions-row">
-        <button type="button" class="btn-tv btn-cyan" id="btn-print-cert">
+      <div class="cert-buttons-row">
+        <button type="button" class="btn-studio btn-sky" id="btn-print-cert">
           🖨️ PRINT / SAVE CERTIFICATE
         </button>
-        <button type="button" class="btn-tv" id="btn-play-again">
+        <button type="button" class="btn-studio" id="btn-play-again">
           🔄 PLAY AGAIN
         </button>
       </div>
     </section>
 
-    <!-- Cheering TV Audience Silhouette Footer -->
-    <svg class="audience-footer" id="audience-svg" viewBox="0 0 1000 60" preserveAspectRatio="none">
-      <path d="M0,60 L0,40 Q25,22 50,40 Q75,20 100,40 Q130,24 160,40 Q190,18 220,40 Q255,25 290,40 Q325,20 360,40 Q395,22 430,40 Q465,18 500,40 Q535,24 570,40 Q605,20 640,40 Q675,22 710,40 Q745,18 780,40 Q815,24 850,40 Q885,20 920,40 Q960,22 1000,40 L1000,60 Z" fill="#0f0524"/>
-      <circle cx="50" cy="24" r="11" fill="#0f0524"/>
-      <circle cx="130" cy="22" r="12" fill="#0f0524"/>
-      <circle cx="220" cy="21" r="11" fill="#0f0524"/>
-      <circle cx="310" cy="24" r="12" fill="#0f0524"/>
-      <circle cx="400" cy="20" r="11" fill="#0f0524"/>
-      <circle cx="500" cy="22" r="13" fill="#0f0524"/>
-      <circle cx="600" cy="20" r="11" fill="#0f0524"/>
-      <circle cx="690" cy="24" r="12" fill="#0f0524"/>
-      <circle cx="780" cy="21" r="11" fill="#0f0524"/>
-      <circle cx="870" cy="23" r="12" fill="#0f0524"/>
-      <circle cx="950" cy="22" r="11" fill="#0f0524"/>
+    <!-- Soft Pastel Audience Silhouette Footer -->
+    <svg class="audience-wave-footer" id="audience-svg" viewBox="0 0 1000 60" preserveAspectRatio="none">
+      <path d="M0,60 L0,40 Q25,22 50,40 Q75,20 100,40 Q130,24 160,40 Q190,18 220,40 Q255,25 290,40 Q325,20 360,40 Q395,22 430,40 Q465,18 500,40 Q535,24 570,40 Q605,20 640,40 Q675,22 710,40 Q745,18 780,40 Q815,24 850,40 Q885,20 920,40 Q960,22 1000,40 L1000,60 Z" fill="#93C5FD" opacity="0.65"/>
+      <circle cx="50" cy="24" r="11" fill="#93C5FD" opacity="0.65"/>
+      <circle cx="130" cy="22" r="12" fill="#93C5FD" opacity="0.65"/>
+      <circle cx="220" cy="21" r="11" fill="#93C5FD" opacity="0.65"/>
+      <circle cx="310" cy="24" r="12" fill="#93C5FD" opacity="0.65"/>
+      <circle cx="400" cy="20" r="11" fill="#93C5FD" opacity="0.65"/>
+      <circle cx="500" cy="22" r="13" fill="#93C5FD" opacity="0.65"/>
+      <circle cx="600" cy="20" r="11" fill="#93C5FD" opacity="0.65"/>
+      <circle cx="690" cy="24" r="12" fill="#93C5FD" opacity="0.65"/>
+      <circle cx="780" cy="21" r="11" fill="#93C5FD" opacity="0.65"/>
+      <circle cx="870" cy="23" r="12" fill="#93C5FD" opacity="0.65"/>
+      <circle cx="950" cy="22" r="11" fill="#93C5FD" opacity="0.65"/>
     </svg>
   </div>
 
   <!-- ========================================================================
-       JAVASCRIPT: GAME ROUNDS, MEDIARECORDER API, EQUALIZER & CERTIFICATE
+       JAVASCRIPT: FULL-TAB LAUNCHER, MEDIARECORDER API, ROUNDS & CERTIFICATE
        ======================================================================== -->
   <script>
     /**
      * ========================================================================
-     * 1. FOUR SPEAKING ROUNDS CURRICULUM DATA (YEAR 4 ESL)
+     * 1. DIRECT FULL-TAB MICROPHONE LAUNCHER (PREVENTS BLANK TABS)
+     * ========================================================================
+     */
+    function openInFullTab() {
+      playTone("click");
+      const currentHref = window.location.href || "";
+
+      // If hosted on a live http/https URL (e.g., Netlify, GitHub Pages, Google Sites), open it directly
+      if (currentHref.startsWith("http://") || currentHref.startsWith("https://")) {
+        const win = window.open(currentHref, "_blank", "noopener,noreferrer");
+        if (win) return;
+      }
+
+      // If running inside a sandboxed preview (srcdoc / about:blank / blob), build a clean standalone Blob tab
+      try {
+        const docClone = document.documentElement.cloneNode(true);
+        const fullHTML = "<!DOCTYPE html>\n" + docClone.outerHTML;
+        const blob = new Blob([fullHTML], { type: "text/html;charset=utf-8" });
+        const blobUrl = URL.createObjectURL(blob);
+        window.open(blobUrl, "_blank");
+      } catch (err) {
+        document.getElementById("stage-status-text").innerHTML =
+          "⚠️ Your browser blocked opening a new tab. Please allow pop-ups or save this page (`Ctrl+S` / `Cmd+S`) and open it in Chrome or Edge.";
+      }
+    }
+
+    /**
+     * ========================================================================
+     * 2. FOUR SPEAKING ROUNDS CURRICULUM DATA (YEAR 4 ESL)
      * ========================================================================
      */
     const HOBBY_OPTIONS = [
@@ -1293,7 +1414,7 @@
             prefix: "My favourite colour is ",
             suffix: ".",
             placeholder: "colour",
-            chips: ["blue", "red", "green", "yellow", "purple", "pink"]
+            chips: ["blue", "yellow", "green", "pink", "purple", "red"]
           },
           {
             key: "food",
@@ -1331,7 +1452,7 @@
           {
             key: "hobby",
             type: "hobby",
-            instruction: "Tap a hobby card below and edit or speak a complete sentence explaining it!"
+            instruction: "Tap a hobby card below and edit or speak a simple sentence explaining it!"
           }
         ]
       },
@@ -1350,10 +1471,10 @@
 
     /**
      * ========================================================================
-     * 2. GAME STATE & AUDIO STREAM REFERENCES
+     * 3. GAME STATE & AUDIO STREAM REFERENCES
      * ========================================================================
      */
-    const totalStarsAvailable = ROUNDS.reduce((total, r) => total + r.prompts.length, 0);
+    const totalStarsAvailable = ROUNDS.reduce((sum, r) => sum + r.prompts.length, 0);
 
     const gameState = {
       roundIdx: 0,
@@ -1386,7 +1507,7 @@
 
     /**
      * ========================================================================
-     * 3. WEB AUDIO API SOUND EFFECTS (NO EXTERNAL SOUND URLS NEEDED)
+     * 4. WEB AUDIO API SOUND EFFECTS (NO EXTERNAL SOUND URLS NEEDED)
      * ========================================================================
      */
     let audioCtx = null;
@@ -1415,7 +1536,7 @@
           osc.type = "triangle";
           osc.frequency.setValueAtTime(540, now);
           osc.frequency.exponentialRampToValueAtTime(760, now + 0.08);
-          gain.gain.setValueAtTime(0.14, now);
+          gain.gain.setValueAtTime(0.13, now);
           gain.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
           osc.connect(gain);
           gain.connect(ctx.destination);
@@ -1426,7 +1547,7 @@
           const gain = ctx.createGain();
           osc.type = "sine";
           osc.frequency.setValueAtTime(880, now);
-          gain.gain.setValueAtTime(0.14, now);
+          gain.gain.setValueAtTime(0.13, now);
           gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
           osc.connect(gain);
           gain.connect(ctx.destination);
@@ -1439,7 +1560,7 @@
             const gain = ctx.createGain();
             osc.type = "triangle";
             osc.frequency.setValueAtTime(freq, now + idx * 0.08);
-            gain.gain.setValueAtTime(0.16, now + idx * 0.08);
+            gain.gain.setValueAtTime(0.15, now + idx * 0.08);
             gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.35);
             osc.connect(gain);
             gain.connect(ctx.destination);
@@ -1454,7 +1575,7 @@
 
     /**
      * ========================================================================
-     * 4. BROWSER MEDIARECORDER API (LOCAL DEVICE VOICE RECORDING & PLAYBACK)
+     * 5. BROWSER MEDIARECORDER API (LOCAL DEVICE VOICE RECORDING & PLAYBACK)
      * ========================================================================
      */
     function getSupportedAudioMimeType() {
@@ -1487,13 +1608,13 @@
     async function startVoiceRecording() {
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof MediaRecorder === "undefined") {
         document.getElementById("stage-status-text").innerHTML =
-          "⚠️ Voice recording is not supported in this browser. Use <strong>Chrome, Edge, or Safari</strong>, or tap <strong>Practice Without Mic</strong> below!";
+          "⚠️ Voice recording is not supported in this browser. Open in <strong>Chrome, Edge, or Safari</strong>, or tap <strong>Practice Without Mic</strong> below!";
+        document.getElementById("btn-stage-full-tab").style.display = "inline-flex";
         document.getElementById("btn-practice-no-mic").style.display = "inline-flex";
         return;
       }
 
       try {
-        // Request microphone permission if stream isn't already active
         if (!gameState.micStream || !gameState.micStream.active) {
           gameState.micStream = await navigator.mediaDevices.getUserMedia({
             audio: {
@@ -1504,7 +1625,6 @@
           });
         }
 
-        // Connect Web Audio API AnalyserNode for real-time equalizer bar animation
         const ctx = getAudioContext();
         if (ctx && !gameState.analyserNode) {
           const source = ctx.createMediaStreamSource(gameState.micStream);
@@ -1542,17 +1662,17 @@
         gameState.isRecording = true;
         gameState.recordSeconds = 0;
 
-        // Update UI to ON AIR Recording state
         const station = document.getElementById("mic-station");
-        station.classList.add("on-air");
+        station.classList.add("recording");
         document.getElementById("center-spotlight").classList.add("active");
         document.getElementById("playback-box").classList.remove("visible");
+        document.getElementById("btn-stage-full-tab").style.display = "none";
         document.getElementById("btn-practice-no-mic").style.display = "none";
 
         const recBtn = document.getElementById("btn-record-voice");
         recBtn.innerHTML = "⏹️ STOP RECORDING";
         recBtn.classList.remove("btn-coral");
-        recBtn.classList.add("btn-emerald");
+        recBtn.classList.add("btn-mint");
 
         document.getElementById("stage-status-text").innerHTML =
           "🔴 <strong>RECORDING (0s)...</strong> Speak clearly into your microphone, then tap <strong>STOP RECORDING</strong>!";
@@ -1567,7 +1687,8 @@
         animateLiveEqualizer();
       } catch (err) {
         document.getElementById("stage-status-text").innerHTML =
-          "🚫 <strong>Microphone Permission Needed!</strong> Click <strong>Allow</strong> in your browser address bar to record your voice, or use <strong>Practice Without Mic</strong> below.";
+          "🚫 <strong>Microphone Blocked or Permission Needed!</strong> Tap <strong>🚀 Open in Full Tab (Enable Mic)</strong> or click <strong>Allow</strong> in your browser address bar.";
+        document.getElementById("btn-stage-full-tab").style.display = "inline-flex";
         document.getElementById("btn-practice-no-mic").style.display = "inline-flex";
       }
     }
@@ -1585,22 +1706,21 @@
 
     function finishRecordingUI() {
       const station = document.getElementById("mic-station");
-      station.classList.remove("on-air");
+      station.classList.remove("recording");
       document.getElementById("center-spotlight").classList.remove("active");
 
       const recBtn = document.getElementById("btn-record-voice");
       recBtn.innerHTML = "🔴 RECORD MY VOICE";
-      recBtn.classList.remove("btn-emerald");
+      recBtn.classList.remove("btn-mint");
       recBtn.classList.add("btn-coral");
 
-      // Trigger cheering audience animation
       const audience = document.getElementById("audience-svg");
       audience.classList.remove("cheering");
       void audience.offsetWidth;
       audience.classList.add("cheering");
 
       document.getElementById("stage-status-text").innerHTML =
-        "🎉 <strong>Recording saved on your device!</strong> Listen to your voice below, then tick your checklist!";
+        "🎉 <strong>Recording saved on your device!</strong> Listen back below to check your voice, then tick your checklist!";
       document.getElementById("playback-box").classList.add("visible");
       document.getElementById("speaking-checklist").classList.add("visible");
 
@@ -1653,7 +1773,7 @@
 
     /**
      * ========================================================================
-     * 5. SCREEN NAVIGATION & HUD UPDATES
+     * 6. SCREEN NAVIGATION, HUD & TELEPROMPTER RENDERING
      * ========================================================================
      */
     function switchScreen(id) {
@@ -1680,11 +1800,6 @@
       });
     }
 
-    /**
-     * ========================================================================
-     * 6. RENDERING CURRENT PROMPT & INTERACTIVE CONTROLS
-     * ========================================================================
-     */
     function escapeHTML(str) {
       return str
         .replace(/&/g, "&amp;")
@@ -1694,12 +1809,11 @@
     }
 
     function countSentences(text) {
-      const matches = text
+      return text
         .trim()
         .split(/[.!?]+/)
         .map(s => s.trim())
-        .filter(s => s.length > 2);
-      return matches.length;
+        .filter(s => s.length > 2).length;
     }
 
     function updateTeleprompterDisplay() {
@@ -1711,13 +1825,13 @@
         el.innerHTML = `“${prompt.fixedSentence}”`;
       } else if (prompt.type === "fill") {
         const val = (gameState.answers[prompt.key] || "").trim() || "______";
-        el.innerHTML = `“${prompt.prefix}<span class="sentence-fill-word">${escapeHTML(val)}</span>${prompt.suffix}”`;
+        el.innerHTML = `“${prompt.prefix}<span class="blank-word-highlight">${escapeHTML(val)}</span>${prompt.suffix}”`;
       } else if (prompt.type === "hobby") {
         const text = (gameState.answers.hobbySentence || "").trim() || "Choose a hobby card below!";
-        el.innerHTML = `“<span class="sentence-fill-word">${escapeHTML(text)}</span>”`;
+        el.innerHTML = `“<span class="blank-word-highlight">${escapeHTML(text)}</span>”`;
       } else if (prompt.type === "finale") {
         const speech = (gameState.answers.bigIntro || "").trim();
-        el.innerHTML = `<div style="font-size: clamp(1.02rem, 2.1vw, 1.3rem); text-align: left;">“${escapeHTML(speech)}”</div>`;
+        el.innerHTML = `<div style="font-size: clamp(1.02rem, 2.1vw, 1.28rem); text-align: left;">“${escapeHTML(speech)}”</div>`;
       }
     }
 
@@ -1725,7 +1839,7 @@
       const name = gameState.answers.name.trim() || "a Year 4 pupil";
       const town = gameState.answers.town.trim() || "Malaysia";
       const school = gameState.answers.school.trim() || "my primary school";
-      const colour = gameState.answers.colour.trim() || "blue";
+      const colour = gameState.answers.colour.trim() || "soft blue";
       const food = gameState.answers.food.trim() || "nasi lemak";
       const subject = gameState.answers.subject.trim() || "English";
       const hobby = gameState.answers.hobbySentence.trim() || "My hobby is reading storybooks because it is fun.";
@@ -1753,18 +1867,18 @@
         `Challenge ${gameState.promptIdx + 1} of ${round.prompts.length}`;
       document.getElementById("prompt-instruction-display").textContent = prompt.instruction;
 
-      // Reset Recorder, Playback, Checklist & Next Button
       const station = document.getElementById("mic-station");
-      station.classList.remove("on-air");
+      station.classList.remove("recording");
       document.getElementById("center-spotlight").classList.remove("active");
 
       const recBtn = document.getElementById("btn-record-voice");
       recBtn.innerHTML = "🔴 RECORD MY VOICE";
-      recBtn.classList.remove("btn-emerald");
+      recBtn.classList.remove("btn-mint");
       recBtn.classList.add("btn-coral");
 
       document.getElementById("playback-box").classList.remove("visible");
       document.getElementById("speaking-checklist").classList.remove("visible");
+      document.getElementById("btn-stage-full-tab").style.display = "none";
       document.getElementById("btn-practice-no-mic").style.display = "none";
 
       document.querySelectorAll(".speaker-chk").forEach(chk => {
@@ -1779,14 +1893,13 @@
       document.getElementById("stage-status-text").innerHTML =
         "Tap <strong>🔴 RECORD MY VOICE</strong> and speak your sentence clearly!";
 
-      // Build interactive controls for the current prompt type
       const controlsBox = document.getElementById("answer-controls-container");
       controlsBox.innerHTML = "";
 
       if (prompt.type === "fill") {
         const input = document.createElement("input");
         input.type = "text";
-        input.className = "tv-text-input";
+        input.className = "pastel-text-input";
         input.placeholder = `Type ${prompt.placeholder} here...`;
         input.value = gameState.answers[prompt.key] || "";
         input.maxLength = 40;
@@ -1801,11 +1914,11 @@
 
         if (prompt.chips && prompt.chips.length > 0) {
           const chipsRow = document.createElement("div");
-          chipsRow.className = "idea-chips-row";
+          chipsRow.className = "chips-row";
           prompt.chips.forEach(chipText => {
             const chip = document.createElement("button");
             chip.type = "button";
-            chip.className = "idea-chip";
+            chip.className = "pastel-chip";
             chip.textContent = chipText;
             chip.addEventListener("click", () => {
               playTone("click");
@@ -1844,7 +1957,7 @@
 
         const hobbyInput = document.createElement("input");
         hobbyInput.type = "text";
-        hobbyInput.className = "tv-text-input";
+        hobbyInput.className = "pastel-text-input";
         hobbyInput.style.maxWidth = "680px";
         hobbyInput.style.fontSize = "1.02rem";
         hobbyInput.value = gameState.answers.hobbySentence;
@@ -1860,21 +1973,21 @@
         }
 
         const countBadge = document.createElement("div");
-        countBadge.className = "sentence-count-badge";
+        countBadge.className = "sentence-counter-pill";
 
         const updateCountBadge = (txt) => {
           const count = countSentences(txt);
           if (count >= 4) {
-            countBadge.className = "sentence-count-badge";
+            countBadge.className = "sentence-counter-pill";
             countBadge.textContent = `✅ ${count} sentences ready (Goal: at least 4 sentences)`;
           } else {
-            countBadge.className = "sentence-count-badge warning";
+            countBadge.className = "sentence-counter-pill needs-more";
             countBadge.textContent = `✍️ ${count} of 4 sentences written — add ${4 - count} more!`;
           }
         };
 
         const area = document.createElement("textarea");
-        area.className = "speech-textarea";
+        area.className = "speech-editor-box";
         area.value = gameState.answers.bigIntro;
         area.placeholder = "Write at least 4 sentences to introduce yourself...";
         area.addEventListener("input", (e) => {
@@ -1905,7 +2018,7 @@
       if (isFinalPrompt) {
         nextBtn.innerHTML = "🏆 CLAIM STAR SPEAKER CERTIFICATE! ➡️";
       } else {
-        nextBtn.innerHTML = "⭐ COLLECT STAR & CONTINUE ➡️";
+        nextBtn.innerHTML = "⭐ CLAIM STAR & NEXT ➡️";
       }
     }
 
@@ -1952,14 +2065,14 @@
       canvas.width = canvas.parentElement.clientWidth;
       canvas.height = canvas.parentElement.clientHeight;
 
-      const colors = ["#fde047", "#38bdf8", "#f43f5e", "#4ade80", "#c084fc", "#fb923c"];
-      const particles = Array.from({ length: 95 }, () => ({
+      const colors = ["#7CC4FA", "#FFE066", "#2B6CB0", "#F43F5E", "#22C55E", "#F59E0B"];
+      const particles = Array.from({ length: 90 }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height - canvas.height,
         w: Math.random() * 10 + 6,
         h: Math.random() * 6 + 4,
         color: colors[Math.floor(Math.random() * colors.length)],
-        vy: Math.random() * 3 + 2,
+        vy: Math.random() * 2.8 + 1.8,
         vx: Math.random() * 2 - 1,
         rot: Math.random() * 360
       }));
@@ -2018,6 +2131,10 @@
      * 8. EVENT LISTENERS
      * ========================================================================
      */
+    document.getElementById("btn-welcome-full-tab").addEventListener("click", openInFullTab);
+    document.getElementById("btn-hud-full-tab").addEventListener("click", openInFullTab);
+    document.getElementById("btn-stage-full-tab").addEventListener("click", openInFullTab);
+
     document.getElementById("btn-start-show").addEventListener("click", () => {
       playTone("star");
       switchScreen("stage-screen");
